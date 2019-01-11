@@ -10,6 +10,9 @@ datagroup: the_look_default_datagroup {
 
 persist_with: the_look_default_datagroup
 
+
+explore: dt_test {}
+
 explore: events {
   join: users {
     type: left_outer
@@ -27,6 +30,9 @@ explore: inventory_items {
 }
 
 explore: order_items {
+
+  sql_always_where: CASE WHEN { % parameter param_test % } = "test" THEN ${order_items.yesno_test} = "yes" END;;
+
   join: inventory_items {
     type: left_outer
     sql_on: ${order_items.inventory_item_id} = ${inventory_items.id} ;;

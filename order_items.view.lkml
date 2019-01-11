@@ -19,6 +19,17 @@ view: order_items {
     sql: ${TABLE}.order_id ;;
   }
 
+  dimension: yesno_test {
+    type: yesno
+    sql: ${TABLE}.order_id = 1 OR ${TABLE}.order_id = 2 ;;
+  }
+
+  parameter: param_test {
+    allowed_value: {
+      label: "test"
+      value: "test"
+    }
+  }
   dimension_group: returned {
     type: time
     timeframes: [

@@ -17,7 +17,7 @@ view: products {
     sql: ${TABLE}.category ;;
   }
 
-  dimension: department {
+  measure: department {
     type: string
     sql: ${TABLE}.department ;;
   }
