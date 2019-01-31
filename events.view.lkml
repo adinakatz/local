@@ -2,6 +2,7 @@ view: events {
   sql_table_name: demo_db.events ;;
 
   dimension: id {
+    label: "id_non_localized"
     primary_key: yes
     type: number
     sql: ${TABLE}.id ;;

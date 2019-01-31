@@ -1,3 +1,5 @@
+include: "test_ndt_model.model"
+
 view: dt_test_2 {
 
   derived_table: {

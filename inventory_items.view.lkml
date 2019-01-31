@@ -26,6 +26,11 @@ view: inventory_items {
     sql: ${TABLE}.created_at ;;
   }
 
+  dimension: created_date_d {
+    type: date
+    sql:  ${created_date} ;;
+  }
+
   dimension: product_id {
     type: number
     # hidden: yes

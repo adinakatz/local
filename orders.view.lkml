@@ -1,3 +1,9 @@
+include: "ndt_test_sql_error.view"
+
+explore: orders {}
+
+explore: ndt_test_sql_error {}
+
 view: orders {
   sql_table_name: demo_db.orders ;;
 
@@ -28,12 +34,19 @@ view: orders {
       quarter,
       year
     ]
+    datatype: date
     sql: ${TABLE}.created_at ;;
   }
 
   dimension: status {
     type: string
     sql: ${TABLE}.status ;;
+  }
+
+  dimension: test {
+    type: number
+    sql: (SELECT min(id) FROM demo_db.orders
+    WHERE {% condition orders.created_date %} orders.created_at {% endcondition %}) ;;
   }
 
   dimension: user_id {

@@ -2,19 +2,17 @@ view: dt_test {
 
   derived_table: {
     sql:
-    SELECT id, created_at FROM demo_db.events ;;
+    SELECT * FROM demo_db.orders
+    WHERE orders.created_at >= {% date_start orders.created_date %} - interval 1 year ;;
 
-    persist_for: "2 hours"
   }
 
-  dimension: id {
-    type: number
-    sql: ${TABLE}.id ;;
-  }
 
-  dimension: created_at {
-    type: date_time
-    sql: ${TABLE}.created_at;;
+  dimension: id {}
+  dimension_group: created_at {
+    type: time
+    timeframes: [date]
+    sql: ${TABLE}.created_at ;;
   }
 
   }

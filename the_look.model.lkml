@@ -31,7 +31,6 @@ explore: inventory_items {
 
 explore: order_items {
 
-  sql_always_where: CASE WHEN { % parameter param_test % } = "test" THEN ${order_items.yesno_test} = "yes" END;;
 
   join: inventory_items {
     type: left_outer
@@ -63,6 +62,11 @@ explore: orders {
     type: left_outer
     sql_on: ${orders.user_id} = ${users.id} ;;
     relationship: many_to_one
+  }
+
+  join: dt_test {
+    sql_on: ${orders.id} = ${dt_test.id} ;;
+    relationship: one_to_one
   }
 }
 

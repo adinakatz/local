@@ -49,8 +49,21 @@ view: order_items {
     sql: ${TABLE}.sale_price ;;
   }
 
+  dimension: link_dimension {
+    sql: CASE WHEN {{ inventory_item_id._in_query }} = true
+    THEN ${inventory_item_id}
+    ELSE "No Link"
+    END ;;
+  }
+
   measure: count {
     type: count
     drill_fields: [id, inventory_items.id, orders.id]
+    html:
+    {% if {{link_dimension._value}} == "No Link" %}
+    "No Link"
+    {% else %}
+    <a href= "{{link_dimension._value}}">"test"<a>
+    {% endif %} ;;
   }
 }
