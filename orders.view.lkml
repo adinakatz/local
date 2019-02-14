@@ -55,7 +55,9 @@ view: orders {
     sql: ${TABLE}.user_id ;;
   }
 
-
+  dimension: order_items_id {
+    sql: ${order_items.id} ;;
+  }
   parameter: dynamic_pivot {
     allowed_value: { value: "id" }
     allowed_value: { value: "status" }
