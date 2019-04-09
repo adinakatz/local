@@ -5,4 +5,5 @@ view: trigger_test {
     datagroup_trigger: test
   }
 
+ dimension: id {}
 }
